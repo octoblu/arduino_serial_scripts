@@ -29,7 +29,7 @@ MFRC522::MIFARE_Key key;
  * Initialize.
  */
 void setup() {
-    Serial.begin(9600); // Initialize serial communications with the PC
+    Serial.begin(57600); // Initialize serial communications with the PC
     while (!Serial);    // Do nothing if no serial port is opened (added for Arduinos based on ATMEGA32U4)
     SPI.begin();        // Init SPI bus
     mfrc522.PCD_Init(); // Init MFRC522 card
@@ -71,7 +71,7 @@ void loop() {
  */
 void dump_byte_array(byte *buffer, byte bufferSize) {
     for (byte i = 0; i < bufferSize; i++) {
-        Serial.print(buffer[i] < 0x10 ? " 0" : " ");
+        Serial.print(buffer[i] < 0x10 ? "0" : "");
         Serial.print(buffer[i], HEX);
     }
 }
