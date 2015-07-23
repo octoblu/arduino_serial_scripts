@@ -17,7 +17,7 @@ Gnd -> Gnd
 
 D0 -> 6
 
-Baud -> 9600
+Baud -> 57600
 
 ###Download Libraries
 https://github.com/adafruit/Adafruit_NeoMatrix/archive/master.zip
