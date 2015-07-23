@@ -34,7 +34,7 @@
 // Arduino.  When held that way, the first pixel is at the top right, and
 // lines are arranged in columns, progressive order.  The shield uses
 // 800 KHz (v2) pixels that expect GRB color data.
-Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(22, 8, PIN,
+Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(60, 8, PIN,
   NEO_MATRIX_BOTTOM     + NEO_MATRIX_LEFT +
   NEO_MATRIX_ROWS + NEO_MATRIX_ZIGZAG,
   NEO_GRB            + NEO_KHZ800);
@@ -52,7 +52,7 @@ void setup() {
   matrix.setTextColor(colors[0]);
   
   
-   Serial.begin(9600);
+   Serial.begin(57600);
 }
 
 int x    = matrix.width();
@@ -63,22 +63,10 @@ boolean complete = false;
 void loop() {
   
    if(Serial.available() > 0) {
-     
-     if(complete){
-      
-       incomingString = "";
-       complete = false; 
-     }
-    // Read a byte from the serial buffer.
-    char incomingByte = (char)Serial.read();
-    incomingString += incomingByte;
-    // Checks for null termination of the string.
-    if (incomingByte == '\n') {
-  
-      complete = true;
-      Serial.println("wut");
-      
-    }
+   incomingString = "";  
+   incomingString = Serial.readStringUntil('\n');
+   
+   
   } 
   
 
@@ -93,5 +81,5 @@ void loop() {
     matrix.setTextColor(colors[pass]);
   }
   matrix.show();
-  delay(100);
+  delay(30);
 }
